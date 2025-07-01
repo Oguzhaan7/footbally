@@ -13,4 +13,7 @@ export const resolvers = {
     ...teamResolvers.Mutation,
     ...leagueResolvers.Mutation,
   },
+  League: {
+    ...leagueResolvers.League,
+  },
 };

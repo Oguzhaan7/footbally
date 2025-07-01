@@ -4,6 +4,7 @@ export const leagueTypeDefs = /* GraphQL */ `
     name: String!
     country: String
     logoUrl: String
+    teams: [Team]
   }
 
   type Query {

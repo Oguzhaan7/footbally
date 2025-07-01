@@ -4,6 +4,13 @@ export const teamTypeDefs = /* GraphQL */ `
     name: String!
     logoUrl: String
     league: League
+    played: Int!
+    won: Int!
+    drawn: Int!
+    lost: Int!
+    goalsFor: Int!
+    goalsAgainst: Int!
+    points: Int!
   }
 
   type Query {
