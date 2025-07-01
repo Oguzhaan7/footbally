@@ -5,17 +5,20 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const LeagueDetailPage = async ({ params }: Props) => {
+  const { id } = await params;
   const client = apolloClientServer();
 
   try {
     const { data } = await client.query({
       query: GET_LEAGUE,
-      variables: { id: params.id },
+      variables: { id },
     });
 
     if (!data.league) {

@@ -2,6 +2,8 @@ import { apolloClientServer } from "@/lib/apollo";
 import { GET_LEAGUES } from "@/graphql/client/queries/leagueQueries";
 import { LeagueGrid } from "@/components/league/LeagueGrid";
 
+export const dynamic = "force-dynamic";
+
 const LeaguePage = async () => {
   const client = apolloClientServer();
   const { data } = await client.query({ query: GET_LEAGUES });
