@@ -32,7 +32,7 @@ export const playerResolvers = {
       }
     ) => {
       const team = await Team.findById(input.teamId);
-      if (!team) throw new Error("Takım bulunamadı");
+      if (!team) throw new Error("Team not found");
 
       const newPlayer = await Player.create({
         name: input.name,

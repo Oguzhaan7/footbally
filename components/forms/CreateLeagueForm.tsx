@@ -66,19 +66,19 @@ export function CreateLeagueForm({ isOpen, onClose, onSuccess }: CreateLeagueFor
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-slate-800">Yeni Lig Oluştur</DialogTitle>
+          <DialogTitle className="text-xl font-bold text-slate-800">Create New League</DialogTitle>
         </DialogHeader>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-2">
             <label htmlFor="name" className="text-sm font-medium text-slate-700">
-              Lig Adı *
+              League Name *
             </label>
             <input
               {...register("name")}
               type="text"
               id="name"
-              placeholder="Örn: Süper Lig"
+              placeholder="e.g: Premier League"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
             />
             {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
@@ -86,13 +86,13 @@ export function CreateLeagueForm({ isOpen, onClose, onSuccess }: CreateLeagueFor
 
           <div className="space-y-2">
             <label htmlFor="country" className="text-sm font-medium text-slate-700">
-              Ülke *
+              Country *
             </label>
             <input
               {...register("country")}
               type="text"
               id="country"
-              placeholder="Örn: Türkiye"
+              placeholder="e.g: England"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
             />
             {errors.country && <p className="text-red-500 text-sm">{errors.country.message}</p>}
@@ -100,7 +100,7 @@ export function CreateLeagueForm({ isOpen, onClose, onSuccess }: CreateLeagueFor
 
           <div className="space-y-2">
             <label htmlFor="logoUrl" className="text-sm font-medium text-slate-700">
-              Logo URL (Opsiyonel)
+              Logo URL (Optional)
             </label>
             <input
               {...register("logoUrl")}
@@ -114,16 +114,16 @@ export function CreateLeagueForm({ isOpen, onClose, onSuccess }: CreateLeagueFor
 
           {error && (
             <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-red-700 text-sm">Lig oluşturulurken bir hata oluştu. Lütfen tekrar deneyin.</p>
+              <p className="text-red-700 text-sm">Failed to create league. Please try again.</p>
             </div>
           )}
 
           <div className="flex gap-3 pt-4">
             <Button type="button" variant="outline" onClick={handleClose} className="flex-1" disabled={isSubmitting}>
-              İptal
+              Cancel
             </Button>
             <Button type="submit" className="flex-1 bg-slate-800 hover:bg-slate-900" disabled={isSubmitting || loading}>
-              {isSubmitting ? "Oluşturuluyor..." : "Lig Oluştur"}
+              {isSubmitting ? "Creating..." : "Create League"}
             </Button>
           </div>
         </form>
