@@ -6,6 +6,16 @@ export const CREATE_LEAGUE = gql`
       _id
       name
       country
+      logoUrl
+    }
+  }
+`;
+
+export const SIMULATE_LEAGUE = gql`
+  mutation SimulateLeague($leagueId: ID!) {
+    simulateLeague(leagueId: $leagueId) {
+      success
+      message
     }
   }
 `;

@@ -16,4 +16,7 @@ export const resolvers = {
   League: {
     ...leagueResolvers.League,
   },
+  Team: {
+    ...teamResolvers.Team,
+  },
 };

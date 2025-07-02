@@ -1,14 +1,8 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { ITeam } from "@/models/Team";
 import { TeamLogo } from "./TeamLogo";
+import Link from "next/link";
 
 interface StandingsTableProps {
   teams: Array<ITeam & { _id: string }>;
@@ -33,8 +27,7 @@ export function StandingsTable({ teams }: StandingsTableProps) {
   const getPositionColor = (position: number) => {
     if (position <= 2) return "bg-green-100 dark:bg-green-900/20";
     if (position <= 4) return "bg-blue-100 dark:bg-blue-900/20";
-    if (position >= sortedTeams.length - 1)
-      return "bg-red-100 dark:bg-red-900/20";
+    if (position >= sortedTeams.length - 1) return "bg-red-100 dark:bg-red-900/20";
     return "";
   };
 
@@ -62,10 +55,7 @@ export function StandingsTable({ teams }: StandingsTableProps) {
               const goalDifference = team.goalsFor - team.goalsAgainst;
 
               return (
-                <TableRow
-                  key={team._id}
-                  className={`hover:bg-muted/50 ${getPositionColor(position)}`}
-                >
+                <TableRow key={team._id} className={`hover:bg-muted/50 ${getPositionColor(position)}`}>
                   <TableCell className="text-center">
                     <Badge
                       variant={getPositionBadge(position)}
@@ -77,27 +67,20 @@ export function StandingsTable({ teams }: StandingsTableProps) {
                   <TableCell>
                     <div className="flex items-center space-x-3">
                       <TeamLogo src={team.logoUrl} alt={`${team.name} logo`} />
-                      <span className="font-medium text-sm">{team.name}</span>
+                      <Link
+                        href={`/teams/${team._id}`}
+                        className="font-medium text-sm hover:text-blue-600 hover:underline transition-colors"
+                      >
+                        {team.name}
+                      </Link>
                     </div>
                   </TableCell>
-                  <TableCell className="text-center font-medium">
-                    {team.played}
-                  </TableCell>
-                  <TableCell className="text-center text-green-600 font-medium">
-                    {team.won}
-                  </TableCell>
-                  <TableCell className="text-center text-yellow-600 font-medium">
-                    {team.drawn}
-                  </TableCell>
-                  <TableCell className="text-center text-red-600 font-medium">
-                    {team.lost}
-                  </TableCell>
-                  <TableCell className="text-center font-medium">
-                    {team.goalsFor}
-                  </TableCell>
-                  <TableCell className="text-center font-medium">
-                    {team.goalsAgainst}
-                  </TableCell>
+                  <TableCell className="text-center font-medium">{team.played}</TableCell>
+                  <TableCell className="text-center text-green-600 font-medium">{team.won}</TableCell>
+                  <TableCell className="text-center text-yellow-600 font-medium">{team.drawn}</TableCell>
+                  <TableCell className="text-center text-red-600 font-medium">{team.lost}</TableCell>
+                  <TableCell className="text-center font-medium">{team.goalsFor}</TableCell>
+                  <TableCell className="text-center font-medium">{team.goalsAgainst}</TableCell>
                   <TableCell className="text-center font-medium">
                     <span
                       className={`${
@@ -112,9 +95,7 @@ export function StandingsTable({ teams }: StandingsTableProps) {
                       {goalDifference}
                     </span>
                   </TableCell>
-                  <TableCell className="text-center font-bold text-lg">
-                    {team.points}
-                  </TableCell>
+                  <TableCell className="text-center font-bold text-lg">{team.points}</TableCell>
                 </TableRow>
               );
             })}
@@ -125,21 +106,15 @@ export function StandingsTable({ teams }: StandingsTableProps) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
         <div className="flex items-center space-x-2">
           <div className="w-4 h-4 bg-green-100 dark:bg-green-900/20 rounded border"></div>
-          <span className="text-muted-foreground">
-            Positions 1-2: Champions League
-          </span>
+          <span className="text-muted-foreground">Positions 1-2: Champions League</span>
         </div>
         <div className="flex items-center space-x-2">
           <div className="w-4 h-4 bg-blue-100 dark:bg-blue-900/20 rounded border"></div>
-          <span className="text-muted-foreground">
-            Positions 3-4: Europa League
-          </span>
+          <span className="text-muted-foreground">Positions 3-4: Europa League</span>
         </div>
         <div className="flex items-center space-x-2">
           <div className="w-4 h-4 bg-red-100 dark:bg-red-900/20 rounded border"></div>
-          <span className="text-muted-foreground">
-            Positions 9-10: Relegation Zone
-          </span>
+          <span className="text-muted-foreground">Positions 9-10: Relegation Zone</span>
         </div>
       </div>
     </div>

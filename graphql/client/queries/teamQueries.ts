@@ -5,10 +5,18 @@ export const GET_TEAMS = gql`
     teams {
       _id
       name
-      logo
+      logoUrl
+      played
+      won
+      drawn
+      lost
+      goalsFor
+      goalsAgainst
+      points
       league {
         _id
         name
+        country
       }
     }
   }
@@ -19,10 +27,31 @@ export const GET_TEAM = gql`
     team(id: $id) {
       _id
       name
-      logo
+      logoUrl
+      played
+      won
+      drawn
+      lost
+      goalsFor
+      goalsAgainst
+      points
       league {
         _id
         name
+        country
+      }
+      players {
+        _id
+        name
+        age
+        nationality
+        position
+        marketValue
+        speed
+        strength
+        technique
+        passing
+        stamina
       }
     }
   }

@@ -3,7 +3,9 @@ export const teamTypeDefs = /* GraphQL */ `
     _id: ID!
     name: String!
     logoUrl: String
-    league: League
+    league: League!
+    city: String
+    stadium: String
     played: Int!
     won: Int!
     drawn: Int!
@@ -11,6 +13,7 @@ export const teamTypeDefs = /* GraphQL */ `
     goalsFor: Int!
     goalsAgainst: Int!
     points: Int!
+    players: [Player!]
   }
 
   type Query {
@@ -21,10 +24,20 @@ export const teamTypeDefs = /* GraphQL */ `
   input CreateTeamInput {
     name: String!
     logoUrl: String
-    league: ID
+    league: ID!
+  }
+
+  input CreateTeamWithPlayersInput {
+    name: String!
+    logoUrl: String
+    league: ID!
+    city: String
+    stadium: String
+    playerCount: Int = 20
   }
 
   type Mutation {
     createTeam(input: CreateTeamInput!): Team
+    createTeamWithPlayers(input: CreateTeamWithPlayersInput!): Team
   }
 `;

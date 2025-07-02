@@ -7,6 +7,11 @@ export const leagueTypeDefs = /* GraphQL */ `
     teams: [Team]
   }
 
+  type SimulationResult {
+    success: Boolean!
+    message: String!
+  }
+
   type Query {
     leagues: [League!]!
     league(id: ID!): League
@@ -20,5 +25,6 @@ export const leagueTypeDefs = /* GraphQL */ `
 
   type Mutation {
     createLeague(input: CreateLeagueInput!): League
+    simulateLeague(leagueId: ID!): SimulationResult
   }
 `;
